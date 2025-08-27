@@ -6,12 +6,11 @@ This guide explains how to deploy the Kostas Makris portfolio website to various
 
 1. **Build the project**
    ```bash
-   cd portfolio-website
    npm install
    npm run build
    ```
 
-2. **The build output will be in `portfolio-website/dist/portfolio-website/browser/`**
+2. **The build output will be in `dist/portfolio-website/browser/`**
 
 ## Hosting Platforms
 
@@ -65,25 +64,21 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: portfolio-website/package-lock.json
+          cache-dependency-path: package-lock.json
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
       - name: Install dependencies
-        run: |
-          cd portfolio-website
-          npm ci
+        run: npm ci
           
       - name: Build
-        run: |
-          cd portfolio-website
-          npm run build -- --base-href /resume/
+        run: npm run build -- --base-href /resume/
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./portfolio-website/dist/portfolio-website/browser
+          path: ./dist/portfolio-website/browser
 
   deploy:
     environment:
@@ -101,7 +96,6 @@ jobs:
 
 1. Connect your GitHub repository to Netlify
 2. Set build settings:
-   - Base directory: `portfolio-website`
    - Build command: `npm run build`
    - Publish directory: `dist/portfolio-website/browser`
 
@@ -109,9 +103,8 @@ jobs:
 
 1. Connect your GitHub repository to Vercel
 2. Set framework preset to "Angular"
-3. Set root directory to `portfolio-website`
-4. Build command: `npm run build`
-5. Output directory: `dist/portfolio-website/browser`
+3. Build command: `npm run build`
+4. Output directory: `dist/portfolio-website/browser`
 
 ## Domain Configuration
 
