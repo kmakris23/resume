@@ -1,0 +1,8 @@
+# Build artifacts and temp files should not be committed
+portfolio-website/node_modules/
+portfolio-website/dist/
+portfolio-website/.angular/
+portfolio-website/*.log
+
+# Temporary content processing files
+/tmp/
