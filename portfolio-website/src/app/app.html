@@ -48,8 +48,8 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="animate-fade-in">
         <div class="mb-8">
-          <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <span class="text-4xl font-bold text-gray-600">{{ personalInfo.name.charAt(0) }}{{ getLastNameInitial(personalInfo.name) }}</span>
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
+            <img src="profile.jpg" alt="{{ personalInfo.name }}" class="w-full h-full object-cover">
           </div>
         </div>
         <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-4">
