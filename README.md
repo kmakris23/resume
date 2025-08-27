@@ -26,8 +26,7 @@ A modern, responsive portfolio website built with Angular and TailwindCSS showca
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/kmakris23/resume.git
-   cd resume/portfolio-website
+   cd resume
    ```
 
 2. **Install dependencies**
