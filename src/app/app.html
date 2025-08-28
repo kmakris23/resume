@@ -16,15 +16,6 @@
           <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.contact }}</a>
         </div>
         
-        <!-- Language Toggle Button -->
-        <button 
-          type="button" 
-          (click)="toggleLanguage()" 
-          class="ml-2 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
-          [attr.aria-label]="languageService.t().aria.switchLanguage">
-          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
-        </button>
-        
         <!-- Theme Toggle Button -->
         <button 
           type="button" 
@@ -44,15 +35,6 @@
       
       <!-- Mobile Controls -->
       <div class="md:hidden flex items-center space-x-2">
-        <!-- Language Toggle Button for Mobile -->
-        <button 
-          type="button" 
-          (click)="toggleLanguage()" 
-          class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
-          [attr.aria-label]="languageService.t().aria.switchLanguage">
-          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
-        </button>
-        
         <!-- Theme Toggle Button for Mobile -->
         <button 
           type="button" 

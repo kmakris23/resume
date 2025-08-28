@@ -78,10 +78,6 @@ export class App implements OnInit {
     this.themeService.toggleTheme();
   }
 
-  toggleLanguage(): void {
-    this.languageService.toggleLanguage();
-  }
-
   getLastNameInitial(fullName: string): string {
     const names = fullName.split(' ');
     return names.length > 1 ? names[names.length - 1].charAt(0) : '';
