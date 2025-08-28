@@ -9,19 +9,28 @@
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
         <div class="flex items-baseline space-x-8">
-          <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-          <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">About</a>
-          <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Experience</a>
-          <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-          <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+          <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.home }}</a>
+          <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.about }}</a>
+          <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.experience }}</a>
+          <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.portfolio }}</a>
+          <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.contact }}</a>
         </div>
+        
+        <!-- Language Toggle Button -->
+        <button 
+          type="button" 
+          (click)="toggleLanguage()" 
+          class="ml-2 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
+          [attr.aria-label]="languageService.t().aria.switchLanguage">
+          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
+        </button>
         
         <!-- Theme Toggle Button -->
         <button 
           type="button" 
           (click)="toggleTheme()" 
-          class="ml-4 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
-          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          class="ml-2 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+          [attr.aria-label]="languageService.t().aria.switchTheme">
           <!-- Sun icon for light mode -->
           <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -35,12 +44,21 @@
       
       <!-- Mobile Controls -->
       <div class="md:hidden flex items-center space-x-2">
+        <!-- Language Toggle Button for Mobile -->
+        <button 
+          type="button" 
+          (click)="toggleLanguage()" 
+          class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
+          [attr.aria-label]="languageService.t().aria.switchLanguage">
+          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
+        </button>
+        
         <!-- Theme Toggle Button for Mobile -->
         <button 
           type="button" 
           (click)="toggleTheme()" 
           class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
-          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          [attr.aria-label]="languageService.t().aria.switchTheme">
           <!-- Sun icon for light mode -->
           <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -64,11 +82,11 @@
     <!-- Mobile Navigation Menu -->
     <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
       <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
-        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Home</a>
-        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">About</a>
-        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Experience</a>
-        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Portfolio</a>
-        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Contact</a>
+        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.home }}</a>
+        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.about }}</a>
+        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.experience }}</a>
+        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.portfolio }}</a>
+        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.contact }}</a>
       </div>
     </div>
   </nav>
