@@ -92,25 +92,25 @@ export const translations: Record<'en' | 'gr', Translations> = {
     hero: {
       title: 'Full Stack Developer',
       subtitle: 'Building Digital Solutions',
-      description: 'Based in Athens, Greece, I specialize in creating scalable web and mobile applications that solve real-world problems. My expertise spans the full development lifecycle, from initial concept to deployment and maintenance.',
-      downloadCV: 'Download CV',
-      viewProjects: 'View Projects'
+      description: 'Driven by a passion for crafting software from the ground up, I love transforming vision into reality and building elegant, scalable solutions that solve real problems.',
+      downloadCV: 'Get In Touch',
+      viewProjects: 'View My Work'
     },
     about: {
       title: 'About Me',
       subtitle: 'years of experience in full-stack development',
       professionalJourney: 'Professional Journey',
-      description: 'Based in {{location}}, I specialize in creating scalable web and mobile applications that solve real-world problems. My expertise spans the full development lifecycle, from initial concept to deployment and maintenance.',
+      description: 'Based in Athens, Greece, I specialize in creating scalable web and mobile applications that solve real-world problems. My expertise spans the full development lifecycle, from initial concept to deployment and maintenance.',
       yearsExperience: 'Years Experience',
       projectsCompleted: 'Projects Completed',
       companies: 'Companies',
       clientSatisfaction: 'Client Satisfaction'
     },
     skills: {
-      title: 'Skills & Technologies',
-      subtitle: 'Tools and technologies I work with',
-      backend: 'Backend',
-      frontend: 'Frontend',
+      title: 'Technical Skills',
+      subtitle: 'Technologies I work with',
+      backend: 'Backend & Database',
+      frontend: 'Frontend & Mobile',
       tools: 'Tools & Cloud'
     },
     experience: {
@@ -156,25 +156,25 @@ export const translations: Record<'en' | 'gr', Translations> = {
     hero: {
       title: 'Full Stack Developer',
       subtitle: 'Δημιουργώντας Ψηφιακές Λύσεις',
-      description: 'Με έδρα την Αθήνα, ειδικεύομαι στη δημιουργία κλιμακωτών διαδικτυακών και κινητών εφαρμογών που λύνουν πραγματικά προβλήματα. Η εξειδίκευσή μου καλύπτει τον πλήρη κύκλο ανάπτυξης, από την αρχική ιδέα έως την ανάπτυξη και τη συντήρηση.',
-      downloadCV: 'Κατέβασμα CV',
+      description: 'Κινούμενος από το πάθος για τη δημιουργία λογισμικού από την αρχή, λατρεύω να μετατρέπω το όραμα σε πραγματικότητα και να δημιουργώ κομψές, κλιμακωτές λύσεις που λύνουν πραγματικά προβλήματα.',
+      downloadCV: 'Επικοινωνήστε Μαζί Μου',
       viewProjects: 'Προβολή Έργων'
     },
     about: {
       title: 'Σχετικά με εμένα',
       subtitle: 'χρόνια εμπειρίας στην full-stack ανάπτυξη',
       professionalJourney: 'Επαγγελματική Πορεία',
-      description: 'Με έδρα {{location}}, ειδικεύομαι στη δημιουργία κλιμακωτών διαδικτυακών και κινητών εφαρμογών που λύνουν πραγματικά προβλήματα. Η εξειδίκευσή μου καλύπτει τον πλήρη κύκλο ανάπτυξης, από την αρχική ιδέα έως την ανάπτυξη και τη συντήρηση.',
+      description: 'Με έδρα την Αθήνα, Ελλάδα, ειδικεύομαι στη δημιουργία κλιμακωτών διαδικτυακών και κινητών εφαρμογών που λύνουν πραγματικά προβλήματα. Η εξειδίκευσή μου καλύπτει τον πλήρη κύκλο ανάπτυξης, από την αρχική ιδέα έως την ανάπτυξη και τη συντήρηση.',
       yearsExperience: 'Χρόνια Εμπειρίας',
       projectsCompleted: 'Ολοκληρωμένα Έργα',
       companies: 'Εταιρείες',
       clientSatisfaction: 'Ικανοποίηση Πελατών'
     },
     skills: {
-      title: 'Δεξιότητες & Τεχνολογίες',
-      subtitle: 'Εργαλεία και τεχνολογίες που χρησιμοποιώ',
-      backend: 'Backend',
-      frontend: 'Frontend',
+      title: 'Τεχνικές Δεξιότητες',
+      subtitle: 'Τεχνολογίες που χρησιμοποιώ',
+      backend: 'Backend & Βάση Δεδομένων',
+      frontend: 'Frontend & Mobile',
       tools: 'Εργαλεία & Cloud'
     },
     experience: {
