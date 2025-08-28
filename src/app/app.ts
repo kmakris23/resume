@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from './services/portfolio.service';
 import { ThemeService } from './services/theme.service';
+import { LanguageService } from './services/language.service';
 import { PersonalInfo, Experience, Skill, Project } from './models/portfolio.models';
 
 @Component({
@@ -28,7 +29,8 @@ export class App implements OnInit {
 
   constructor(
     private portfolioService: PortfolioService,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    public languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +76,10 @@ export class App implements OnInit {
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
+  }
+
+  toggleLanguage(): void {
+    this.languageService.toggleLanguage();
   }
 
   getLastNameInitial(fullName: string): string {

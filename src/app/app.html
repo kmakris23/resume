@@ -9,19 +9,28 @@
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
         <div class="flex items-baseline space-x-8">
-          <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-          <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">About</a>
-          <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Experience</a>
-          <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-          <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+          <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.home }}</a>
+          <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.about }}</a>
+          <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.experience }}</a>
+          <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.portfolio }}</a>
+          <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">{{ languageService.t().nav.contact }}</a>
         </div>
+        
+        <!-- Language Toggle Button -->
+        <button 
+          type="button" 
+          (click)="toggleLanguage()" 
+          class="ml-2 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
+          [attr.aria-label]="languageService.t().aria.switchLanguage">
+          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
+        </button>
         
         <!-- Theme Toggle Button -->
         <button 
           type="button" 
           (click)="toggleTheme()" 
-          class="ml-4 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
-          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          class="ml-2 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+          [attr.aria-label]="languageService.t().aria.switchTheme">
           <!-- Sun icon for light mode -->
           <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -35,12 +44,21 @@
       
       <!-- Mobile Controls -->
       <div class="md:hidden flex items-center space-x-2">
+        <!-- Language Toggle Button for Mobile -->
+        <button 
+          type="button" 
+          (click)="toggleLanguage()" 
+          class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors text-sm font-medium"
+          [attr.aria-label]="languageService.t().aria.switchLanguage">
+          {{ languageService.isEnglish() ? 'ΕΛ' : 'EN' }}
+        </button>
+        
         <!-- Theme Toggle Button for Mobile -->
         <button 
           type="button" 
           (click)="toggleTheme()" 
           class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
-          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          [attr.aria-label]="languageService.t().aria.switchTheme">
           <!-- Sun icon for light mode -->
           <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -64,11 +82,11 @@
     <!-- Mobile Navigation Menu -->
     <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
       <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
-        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Home</a>
-        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">About</a>
-        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Experience</a>
-        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Portfolio</a>
-        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Contact</a>
+        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.home }}</a>
+        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.about }}</a>
+        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.experience }}</a>
+        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.portfolio }}</a>
+        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">{{ languageService.t().nav.contact }}</a>
       </div>
     </div>
   </nav>
@@ -89,14 +107,14 @@
           {{ personalInfo.name }}
         </h1>
         <h2 class="text-xl md:text-2xl text-primary-600 dark:text-primary-400 font-semibold mb-6">
-          {{ personalInfo.title }}
+          {{ languageService.t().hero.title }}
         </h2>
         <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-          {{ personalInfo.bio }}
+          {{ languageService.t().hero.description }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" class="btn-primary">Get In Touch</a>
-          <a href="#portfolio" class="btn-secondary">View My Work</a>
+          <a href="#contact" class="btn-primary">{{ languageService.t().hero.downloadCV }}</a>
+          <a href="#portfolio" class="btn-secondary">{{ languageService.t().hero.viewProjects }}</a>
         </div>
         <div class="mt-8 flex justify-center space-x-6">
           <a [href]="personalInfo.github" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
@@ -113,21 +131,19 @@
   <section id="about" class="section-padding bg-white dark:bg-gray-900">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">{{ languageService.t().about.title }}</h2>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          {{ personalInfo.yearsOfExperience }}+ years of experience in full-stack development
+          {{ personalInfo.yearsOfExperience }}+ {{ languageService.t().about.subtitle }}
         </p>
       </div>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Professional Journey</h3>
+          <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white mb-4">{{ languageService.t().about.professionalJourney }}</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-6">
-            {{ personalInfo.bio }}
+            {{ languageService.t().hero.description }}
           </p>
           <p class="text-gray-600 dark:text-gray-300 mb-6">
-            Based in {{ personalInfo.location }}, I specialize in creating scalable web and mobile applications 
-            that solve real-world problems. My expertise spans the full development lifecycle, from initial concept 
-            to deployment and maintenance.
+            {{ languageService.t().about.description }}
           </p>
           <div class="flex flex-wrap gap-2">
             <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 rounded-full text-sm font-medium" 
@@ -139,19 +155,19 @@
         <div class="grid grid-cols-2 gap-6">
           <div class="text-center">
             <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ personalInfo.yearsOfExperience }}+</div>
-            <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
+            <div class="text-gray-600 dark:text-gray-300">{{ languageService.t().about.yearsExperience }}</div>
           </div>
           <div class="text-center">
             <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ projects.length }}+</div>
-            <div class="text-gray-600 dark:text-gray-300">Projects Completed</div>
+            <div class="text-gray-600 dark:text-gray-300">{{ languageService.t().about.projectsCompleted }}</div>
           </div>
           <div class="text-center">
             <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ experience.length }}</div>
-            <div class="text-gray-600 dark:text-gray-300">Companies</div>
+            <div class="text-gray-600 dark:text-gray-300">{{ languageService.t().about.companies }}</div>
           </div>
           <div class="text-center">
             <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">100%</div>
-            <div class="text-gray-600 dark:text-gray-300">Client Satisfaction</div>
+            <div class="text-gray-600 dark:text-gray-300">{{ languageService.t().about.clientSatisfaction }}</div>
           </div>
         </div>
       </div>
@@ -162,14 +178,14 @@
   <section class="section-padding bg-gray-50 dark:bg-gray-800">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">Technical Skills</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Technologies I work with</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">{{ languageService.t().skills.title }}</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">{{ languageService.t().skills.subtitle }}</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Backend Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Backend & Database</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">{{ languageService.t().skills.backend }}</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.backend" class="flex items-center justify-between">
               <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
@@ -186,7 +202,7 @@
         
         <!-- Frontend Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Frontend & Mobile</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">{{ languageService.t().skills.frontend }}</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.frontend" class="flex items-center justify-between">
               <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
@@ -203,7 +219,7 @@
         
         <!-- Tools Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Tools & Cloud</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">{{ languageService.t().skills.tools }}</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.tools" class="flex items-center justify-between">
               <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
@@ -225,8 +241,8 @@
   <section id="experience" class="section-padding bg-white dark:bg-gray-900">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">My professional journey</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">{{ languageService.t().experience.title }}</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">{{ languageService.t().experience.subtitle }}</p>
       </div>
       
       <div class="space-y-12">
@@ -264,8 +280,8 @@
   <section id="portfolio" class="section-padding bg-gray-50 dark:bg-gray-800">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">Featured Projects</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Some of my recent work</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">{{ languageService.t().portfolio.title }}</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">{{ languageService.t().portfolio.subtitle }}</p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -284,7 +300,7 @@
           <div class="flex justify-between items-center text-sm">
             <span class="text-gray-500 dark:text-gray-400">{{ project.type }}</span>
             <div class="space-x-2">
-              <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">View Details</button>
+              <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">{{ languageService.t().portfolio.viewDetails }}</button>
             </div>
           </div>
         </div>
@@ -296,13 +312,13 @@
   <section id="contact" class="section-padding bg-white dark:bg-gray-900">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Let's discuss your next project</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">{{ languageService.t().contact.title }}</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">{{ languageService.t().contact.subtitle }}</p>
       </div>
       
       <div class="flex justify-center">
         <div class="max-w-md">
-          <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+          <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white mb-6">{{ languageService.t().contact.information }}</h3>
           <div class="space-y-6">
             <div class="flex items-center space-x-4">
               <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
@@ -311,7 +327,7 @@
                 </svg>
               </div>
               <div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Phone</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ languageService.t().contact.phone }}</div>
                 <div class="text-gray-900 dark:text-white font-medium">{{ personalInfo.phone }}</div>
               </div>
             </div>
@@ -323,7 +339,7 @@
                 </svg>
               </div>
               <div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Email</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ languageService.t().contact.email }}</div>
                 <div class="text-gray-900 dark:text-white font-medium">{{ personalInfo.email }}</div>
               </div>
             </div>
@@ -336,7 +352,7 @@
                 </svg>
               </div>
               <div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Location</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ languageService.t().contact.location }}</div>
                 <div class="text-gray-900 dark:text-white font-medium">{{ personalInfo.location }}</div>
               </div>
             </div>
@@ -362,7 +378,7 @@
       </div>
       <div class="border-t border-gray-800 dark:border-gray-800 pt-8">
         <p class="text-gray-400 dark:text-gray-500 text-sm">
-          © {{ currentYear }} {{ personalInfo.name }}. All rights reserved. Built with Angular & TailwindCSS.
+          © {{ currentYear }} {{ personalInfo.name }}. {{ languageService.t().footer.rightsReserved }}
         </p>
       </div>
     </div>
