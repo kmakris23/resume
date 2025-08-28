@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PortfolioService } from './services/portfolio.service';
+import { ThemeService } from './services/theme.service';
 import { PersonalInfo, Experience, Skill, Project } from './models/portfolio.models';
 
 @Component({
@@ -26,7 +27,10 @@ export class App implements OnInit {
   featuredProjects!: Project[];
   topSkills!: Skill[];
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    public themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -67,6 +71,10 @@ export class App implements OnInit {
   // UI Methods
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
   getLastNameInitial(fullName: string): string {
