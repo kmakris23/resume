@@ -1,25 +1,58 @@
 <!-- Header Navigation -->
-<header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
+<header class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 z-50">
   <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
       <div class="flex-shrink-0">
-        <h1 class="text-2xl font-heading font-bold text-gray-900">{{ personalInfo.name }}</h1>
+        <h1 class="text-2xl font-heading font-bold text-gray-900 dark:text-white">{{ personalInfo.name }}</h1>
       </div>
       
       <!-- Desktop Navigation -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-8">
-          <a href="#home" class="text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-          <a href="#about" class="text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-          <a href="#experience" class="text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Experience</a>
-          <a href="#portfolio" class="text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-          <a href="#contact" class="text-gray-600 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <div class="flex items-baseline space-x-8">
+          <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+          <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">About</a>
+          <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Experience</a>
+          <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+          <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
         </div>
+        
+        <!-- Theme Toggle Button -->
+        <button 
+          type="button" 
+          (click)="toggleTheme()" 
+          class="ml-4 p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          <!-- Sun icon for light mode -->
+          <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <!-- Moon icon for dark mode -->
+          <svg *ngIf="themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
       </div>
       
-      <!-- Mobile menu button -->
-      <div class="md:hidden">
-        <button type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900" 
+      <!-- Mobile Controls -->
+      <div class="md:hidden flex items-center space-x-2">
+        <!-- Theme Toggle Button for Mobile -->
+        <button 
+          type="button" 
+          (click)="toggleTheme()" 
+          class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+          [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+          <!-- Sun icon for light mode -->
+          <svg *ngIf="!themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <!-- Moon icon for dark mode -->
+          <svg *ngIf="themeService.isDarkMode()" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+        
+        <!-- Mobile menu button -->
+        <button type="button" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:text-gray-900 dark:focus:text-white" 
                 (click)="toggleMobileMenu()">
           <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
             <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
@@ -30,12 +63,12 @@
     
     <!-- Mobile Navigation Menu -->
     <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
-      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
-        <a href="#home" class="text-gray-600 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Home</a>
-        <a href="#about" class="text-gray-600 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">About</a>
-        <a href="#experience" class="text-gray-600 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Experience</a>
-        <a href="#portfolio" class="text-gray-600 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Portfolio</a>
-        <a href="#contact" class="text-gray-600 hover:text-primary-600 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Contact</a>
+      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
+        <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Home</a>
+        <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">About</a>
+        <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Experience</a>
+        <a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Portfolio</a>
+        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors" (click)="toggleMobileMenu()">Contact</a>
       </div>
     </div>
   </nav>
@@ -44,7 +77,7 @@
 <!-- Main Content -->
 <main>
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 pt-20">
+  <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 pt-20">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="animate-fade-in">
         <div class="mb-8">
@@ -52,13 +85,13 @@
             <img src="profile.jpg" alt="{{ personalInfo.name }}" class="w-full h-full object-cover">
           </div>
         </div>
-        <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-4">
+        <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 dark:text-white mb-4">
           {{ personalInfo.name }}
         </h1>
-        <h2 class="text-xl md:text-2xl text-primary-600 font-semibold mb-6">
+        <h2 class="text-xl md:text-2xl text-primary-600 dark:text-primary-400 font-semibold mb-6">
           {{ personalInfo.title }}
         </h2>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
           {{ personalInfo.bio }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -66,7 +99,7 @@
           <a href="#portfolio" class="btn-secondary">View My Work</a>
         </div>
         <div class="mt-8 flex justify-center space-x-6">
-          <a [href]="personalInfo.github" target="_blank" class="text-gray-600 hover:text-primary-600 transition-colors">
+          <a [href]="personalInfo.github" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
@@ -77,27 +110,27 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="section-padding bg-white">
+  <section id="about" class="section-padding bg-white dark:bg-gray-900">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">About Me</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           {{ personalInfo.yearsOfExperience }}+ years of experience in full-stack development
         </p>
       </div>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h3 class="text-2xl font-heading font-semibold text-gray-900 mb-4">Professional Journey</h3>
-          <p class="text-gray-600 mb-6">
+          <h3 class="text-2xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Professional Journey</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
             {{ personalInfo.bio }}
           </p>
-          <p class="text-gray-600 mb-6">
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
             Based in {{ personalInfo.location }}, I specialize in creating scalable web and mobile applications 
             that solve real-world problems. My expertise spans the full development lifecycle, from initial concept 
             to deployment and maintenance.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium" 
+            <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 rounded-full text-sm font-medium" 
                   *ngFor="let skill of topSkills">
               {{ skill.name }}
             </span>
@@ -105,20 +138,20 @@
         </div>
         <div class="grid grid-cols-2 gap-6">
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">{{ personalInfo.yearsOfExperience }}+</div>
-            <div class="text-gray-600">Years Experience</div>
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ personalInfo.yearsOfExperience }}+</div>
+            <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">{{ projects.length }}+</div>
-            <div class="text-gray-600">Projects Completed</div>
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ projects.length }}+</div>
+            <div class="text-gray-600 dark:text-gray-300">Projects Completed</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">{{ experience.length }}</div>
-            <div class="text-gray-600">Companies</div>
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{{ experience.length }}</div>
+            <div class="text-gray-600 dark:text-gray-300">Companies</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">100%</div>
-            <div class="text-gray-600">Client Satisfaction</div>
+            <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">100%</div>
+            <div class="text-gray-600 dark:text-gray-300">Client Satisfaction</div>
           </div>
         </div>
       </div>
@@ -126,26 +159,26 @@
   </section>
 
   <!-- Skills Section -->
-  <section class="section-padding bg-gray-50">
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
     <div class="container">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">Technical Skills</h2>
-        <p class="text-xl text-gray-600">Technologies I work with</p>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-4">Technical Skills</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Technologies I work with</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Backend Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Backend & Database</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Backend & Database</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.backend" class="flex items-center justify-between">
-              <span class="text-gray-700">{{ skill.name }}</span>
+              <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
               <div class="flex items-center space-x-2">
-                <div class="w-20 bg-gray-200 rounded-full h-2">
-                  <div class="bg-primary-600 h-2 rounded-full transition-all duration-500" 
+                <div class="w-20 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-primary-600 dark:bg-primary-400 h-2 rounded-full transition-all duration-500" 
                        [style.width.%]="skill.proficiency"></div>
                 </div>
-                <span class="text-sm text-gray-500">{{ skill.proficiency }}%</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ skill.proficiency }}%</span>
               </div>
             </div>
           </div>
@@ -153,16 +186,16 @@
         
         <!-- Frontend Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Frontend & Mobile</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Frontend & Mobile</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.frontend" class="flex items-center justify-between">
-              <span class="text-gray-700">{{ skill.name }}</span>
+              <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
               <div class="flex items-center space-x-2">
-                <div class="w-20 bg-gray-200 rounded-full h-2">
-                  <div class="bg-primary-600 h-2 rounded-full transition-all duration-500" 
+                <div class="w-20 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-primary-600 dark:bg-primary-400 h-2 rounded-full transition-all duration-500" 
                        [style.width.%]="skill.proficiency"></div>
                 </div>
-                <span class="text-sm text-gray-500">{{ skill.proficiency }}%</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ skill.proficiency }}%</span>
               </div>
             </div>
           </div>
@@ -170,16 +203,16 @@
         
         <!-- Tools Skills -->
         <div class="card">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Tools & Cloud</h3>
+          <h3 class="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-4">Tools & Cloud</h3>
           <div class="space-y-4">
             <div *ngFor="let skill of skills.tools" class="flex items-center justify-between">
-              <span class="text-gray-700">{{ skill.name }}</span>
+              <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
               <div class="flex items-center space-x-2">
-                <div class="w-20 bg-gray-200 rounded-full h-2">
-                  <div class="bg-primary-600 h-2 rounded-full transition-all duration-500" 
+                <div class="w-20 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-primary-600 dark:bg-primary-400 h-2 rounded-full transition-all duration-500" 
                        [style.width.%]="skill.proficiency"></div>
                 </div>
-                <span class="text-sm text-gray-500">{{ skill.proficiency }}%</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ skill.proficiency }}%</span>
               </div>
             </div>
           </div>
