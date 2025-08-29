@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-This repository contains a modern, responsive portfolio website for Kostas Makris, a Full Stack Developer with 8+ years of experience based in Athens, Greece. The website showcases professional experience, technical skills, and projects in an elegant, user-friendly interface. The portfolio supports easy content updates through a simple markdown file (`portfolio.md`) with fallback to TypeScript data files.
+This repository contains a modern, responsive portfolio website for Kostas Makris, a Full Stack Developer with 8+ years of experience based in Athens, Greece. The website showcases professional experience, technical skills, and projects in an elegant, user-friendly interface. The portfolio supports easy content updates through a simple markdown file (`PORTFOLIO.md`) with fallback to TypeScript data files.
 
 **Repository Size:** ~650 npm packages, ~337KB production bundle  
 **Project Type:** Single-page Angular application with static deployment  
@@ -53,7 +53,14 @@ npm run build:prod
 **Time Required:** ~5-6 seconds  
 **Output:** `dist/portfolio-website/browser/` (optimized for deployment)  
 **Bundle Size:** ~337KB total (84KB gzipped)  
-**Note:** Automatically copies `portfolio.md` to `public/` directory for production serving
+**Note:** Automatically copies `PORTFOLIO.md` to `public/` directory for production serving
+
+#### Manual Portfolio Copy
+```bash
+npm run copy-portfolio
+```
+**Description:** Manually copy `PORTFOLIO.md` to `public/portfolio.md` if needed  
+**Script Location:** `scripts/copy-portfolio.sh`
 
 ### Testing
 ```bash
@@ -74,7 +81,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 3. Test application locally: `npm run dev` and visit http://localhost:4200
 4. Verify build output exists in `dist/portfolio-website/browser/`
 5. Check bundle size doesn't exceed budget limits (500KB warning, 1MB error)
-6. Ensure `portfolio.md` is copied to `public/` directory during build process
+6. Ensure `PORTFOLIO.md` is copied to `public/` directory during build process
 
 ## Project Layout and Architecture
 
@@ -82,7 +89,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 ```
 /
 ├── .github/workflows/deploy.yml    # GitHub Actions CI/CD
-├── portfolio.md                    # Markdown-based portfolio content
+├── PORTFOLIO.md                   # Markdown-based portfolio content
 ├── MARKDOWN_GUIDE.md               # Guide for updating content via markdown
 ├── DEPLOYMENT.md                   # Deployment guide
 ├── README.md                       # Basic repository info
@@ -109,8 +116,8 @@ npm test -- --watch=false --browsers=ChromeHeadless
 │   ├── main.ts                     # Application bootstrap
 │   ├── index.html                  # HTML shell
 │   └── styles.scss                 # Global styles
-├── public/                         # Static assets (includes copied portfolio.md)
-├── portfolio.md                    # Main content file (markdown format)
+├── public/                         # Static assets (includes copied PORTFOLIO.md as portfolio.md)
+├── PORTFOLIO.md                    # Main content file (markdown format)
 ├── MARKDOWN_GUIDE.md               # Content editing guide
 ├── angular.json                    # Angular CLI configuration
 ├── package.json                    # Dependencies and scripts
@@ -140,7 +147,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 ### Architecture Patterns
 - **Standalone Components:** Angular standalone architecture (no NgModules)
 - **Service-Based Data:** Portfolio content managed via `PortfolioService` with `MarkdownParserService`
-- **Markdown-First Content:** All content primarily loaded from `portfolio.md` with TypeScript fallback
+- **Markdown-First Content:** All content primarily loaded from `PORTFOLIO.md` with TypeScript fallback
 - **HTTP Client Integration:** Uses Angular HttpClient to load markdown files
 - **Responsive Design:** TailwindCSS utility-first approach
 - **Single Page Application:** No routing, all content in single app component
@@ -161,7 +168,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 ## Content Management
 
 ### Primary Method: Markdown File
-**Location:** `portfolio.md` (root directory)  
+**Location:** `PORTFOLIO.md` (root directory)  
 **Update Process:** Edit markdown file and rebuild application  
 **Content Types:** Personal info, skills, experience, projects, education  
 **Format Guide:** See `MARKDOWN_GUIDE.md` for detailed syntax  
@@ -172,7 +179,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 **Update Process:** Modify data file and rebuild application  
 
 ### Content Loading System
-- **Primary:** Attempts to load `portfolio.md` via HTTP request
+- **Primary:** Attempts to load `PORTFOLIO.md` via HTTP request
 - **Fallback:** Uses TypeScript data objects if markdown fails
 - **Parser:** `MarkdownParserService` converts markdown to TypeScript interfaces
 - **Service:** `PortfolioService` manages loading and fallback logic  
@@ -205,7 +212,7 @@ npm test -- --watch=false --browsers=ChromeHeadless
 - **Services:** Data services in `services/` directory (portfolio, markdown-parser, theme, language)
 - **Models:** TypeScript interfaces in `models/` directory  
 - **Data:** Fallback content data in `data/` directory
-- **Content:** Primary content in `portfolio.md` (root directory)
+- **Content:** Primary content in `PORTFOLIO.md` (root directory)
 - **Assets:** Static files in `public/` directory
 - **Documentation:** `MARKDOWN_GUIDE.md` for content editing
 - **Styles:** Global SCSS in `src/styles.scss`, TailwindCSS utilities
@@ -220,12 +227,12 @@ npm test -- --watch=false --browsers=ChromeHeadless
 
 ### Portfolio Service (`src/app/services/portfolio.service.ts`)
 - Loads content from markdown file first, falls back to TypeScript data
-- Uses HttpClient to fetch `portfolio.md`
+- Uses HttpClient to fetch `portfolio.md` (served from copied PORTFOLIO.md)
 - Integrates with MarkdownParserService for content parsing
 - Provides unified data interface regardless of source
 
 ### Markdown Parser Service (`src/app/services/markdown-parser.service.ts`)
-- Parses `portfolio.md` content into TypeScript interfaces
+- Parses `PORTFOLIO.md` content into TypeScript interfaces
 - Handles personal info, skills, experience, projects, education sections
 - Uses marked library for markdown processing
 - Converts markdown structure to portfolio data models
@@ -251,10 +258,10 @@ npm test -- --watch=false --browsers=ChromeHeadless
 3. Test locally with `npm run dev` before finalizing changes
 4. Respect the existing single-component architecture
 5. Follow TailwindCSS utility-first approach for styling
-6. Ensure `portfolio.md` exists and is properly formatted for content updates
+6. Ensure `PORTFOLIO.md` exists and is properly formatted for content updates
 
 **When making changes:**
-1. **Content Updates:** Edit `portfolio.md` using markdown syntax (see `MARKDOWN_GUIDE.md`)
+1. **Content Updates:** Edit `PORTFOLIO.md` using markdown syntax (see `MARKDOWN_GUIDE.md`)
 2. **Functionality Changes:** Update `src/app/app.ts` for component logic
 3. **Service Changes:** Modify services in `src/app/services/` directory
 4. **Styling Changes:** Modify `tailwind.config.js` for customization
