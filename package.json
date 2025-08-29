@@ -19,12 +19,13 @@
     "ng": "ng",
     "start": "ng serve",
     "dev": "ng serve --open",
-    "build": "cp portfolio.md public/ 2>/dev/null || true && ng build",
-    "build:prod": "cp portfolio.md public/ 2>/dev/null || true && ng build --configuration production",
+    "build": "cp PORTFOLIO.md public/portfolio.md 2>/dev/null || true && ng build",
+    "build:prod": "cp PORTFOLIO.md public/portfolio.md 2>/dev/null || true && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "serve": "ng serve --configuration production"
+    "serve": "ng serve --configuration production",
+    "copy-portfolio": "./scripts/copy-portfolio.sh"
   },
   "prettier": {
     "printWidth": 100,

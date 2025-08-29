@@ -1,16 +1,16 @@
 # Portfolio Markdown Format Guide
 
-This portfolio website now supports updating content from a simple markdown file (`portfolio.md`). This provides an easy way to update all portfolio information without needing to edit TypeScript files.
+This portfolio website now supports updating content from a simple markdown file (`PORTFOLIO.md`). This provides an easy way to update all portfolio information without needing to edit TypeScript files.
 
 ## Quick Start
 
-1. Edit the `portfolio.md` file in the root directory
+1. Edit the `PORTFOLIO.md` file in the root directory
 2. Commit and push your changes
 3. The website will automatically load the updated content
 
 ## Markdown File Structure
 
-The `portfolio.md` file should follow this structure:
+The `PORTFOLIO.md` file should follow this structure:
 
 ### Personal Information Section
 ```markdown
@@ -104,15 +104,15 @@ Description of the project goes here. Explain what it does and its key features.
 
 ## How It Works
 
-1. **Fallback System**: The application first tries to load `portfolio.md`. If it fails, it falls back to the original TypeScript data files.
+1. **Fallback System**: The application first tries to load `PORTFOLIO.md`. If it fails, it falls back to the original TypeScript data files.
 
-2. **Real-time Updates**: During development (`npm run dev`), changes to `portfolio.md` will be reflected immediately when you refresh the page.
+2. **Real-time Updates**: During development (`npm run dev`), changes to `PORTFOLIO.md` will be reflected immediately when you refresh the page.
 
-3. **Build Process**: When building for production, the `portfolio.md` file is included in the build and served as a static asset.
+3. **Build Process**: When building for production, the `PORTFOLIO.md` file is automatically copied to the `public` directory during the build process and served as a static asset.
 
 ## File Location
 
-- **Development**: Place `portfolio.md` in the root directory
+- **Development**: Place `PORTFOLIO.md` in the root directory
 - **Production**: The file is automatically copied to the `public` directory during the build process
 
 ## Testing Your Changes
