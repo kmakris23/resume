@@ -24,7 +24,6 @@ export class App implements OnInit {
   skills!: { backend: Skill[]; frontend: Skill[]; tools: Skill[] };
   experience!: Experience[];
   projects!: Project[];
-  featuredProjects!: Project[];
   topSkills!: Skill[];
 
   constructor(
@@ -61,11 +60,6 @@ export class App implements OnInit {
     // Load projects
     this.portfolioService.getProjects().subscribe(allProjects => {
       this.projects = allProjects;
-    });
-
-    // Load featured projects
-    this.portfolioService.getFeaturedProjects().subscribe(featured => {
-      this.featuredProjects = featured;
     });
   }
 
